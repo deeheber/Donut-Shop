@@ -40,6 +40,7 @@
           hrsOpen: 24
         };
 
+//Push shops into an array that can be looped through
         var shops = new Array();
         shops.push(blueStar);
         shops.push(voodoo);
