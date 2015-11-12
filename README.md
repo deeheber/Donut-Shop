@@ -1,2 +1,2 @@
 # Donut-Shop
-This is a forecaster for a fictional donut shop. Project for my Code Fellows 201 class.
+This is a forecaster for a fictional set of donuts shops. The table data is dynamically generated with JavaScript.
