@@ -17,6 +17,8 @@
               <th>Max Customers</th>
               <th>Avg Donut/Customer</th>
               <th>Hours Open</th>
+              <th>Customers/Day</th>
+              <th>Donuts/Day</th>
             </tr>
             <script type="text/javascript">
             for(index = 0; index < shops.length; index++){
@@ -26,6 +28,7 @@
               document.write("<td>" + shops[index].maxCust + "</td>");
               document.write("<td>" + shops[index].perCust + "</td>");
               document.write("<td>" + shops[index].hrsOpen + "</td>");
+              document.write("<td>" + shops[index].getCustPerDay() + "</td>");
               document.write("</tr>");
             }
             </script>
