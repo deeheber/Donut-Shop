@@ -10,6 +10,8 @@ body {
 
 h1 {
     text-align: center;
+    color: #FFF;
+    text-shadow: 0 0 5px #333;
 }
 
 table {
@@ -17,12 +19,13 @@ table {
     text-align: center;
     border-collapse: collapse;
     border: 1px #333 solid;
+    box-shadow: 0 0 5px #333;
 }
 
 th {
     width: 200px;
     background-color: #61CDF5;
-    border-bottom: 5px #333 solid;
+    border-bottom: 1px #333 solid;
 }
 
 td {
