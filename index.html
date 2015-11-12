@@ -12,7 +12,7 @@
         <br>
           <table>
             <tr>
-              <th>Shop Name</th>
+              <th class = "name">Shop Name</th>
               <th>Min Customers</th>
               <th>Max Customers</th>
               <th>Avg Donut/Customer</th>
@@ -21,7 +21,7 @@
             <script type="text/javascript">
             for(index = 0; index < shops.length; index++){
               document.write("<tr>");
-              document.write("<td>" + shops[index].name + "</td>");
+              document.write("<td class = 'name'>" + shops[index].name + "</td>");
               document.write("<td>" + shops[index].minCust + "</td>");
               document.write("<td>" + shops[index].maxCust + "</td>");
               document.write("<td>" + shops[index].perCust + "</td>");
