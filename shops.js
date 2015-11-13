@@ -10,6 +10,11 @@
         var custPerDay = (Math.floor(Math.random() * (this.maxCust - this.minCust + 1)) + this.minCust);
         return custPerDay;
     };
+    this.getDonutsPerDay = function(custPerDay) {
+        var donutsPerDay = Math.ceil(custPerDay * perCust);
+        return donutsPerDay;
+    };
+
   }
 
 //Adding specific shop data and pushing into an array that can be looped through
