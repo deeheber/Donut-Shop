@@ -21,12 +21,9 @@
               <th>Donuts/Day</th>
             </tr>
             <script type="text/javascript">
-          //loop through shop data and write out a row for each shop
+          //loop through the shops array and write out a row for each shop
             for(index = 0; index < shops.length; index++){
               document.write(shops[index].writeTableData());
-              var custPerDay = shops[index].getCustPerDay();
-              document.write("<td>" + custPerDay + "</td>");
-              document.write("<td>" + shops[index].getDonutsPerDay(this.custPerDay) + "</td></tr>");
             }
             </script>
           </table>
