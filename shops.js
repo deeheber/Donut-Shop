@@ -1,22 +1,32 @@
 //Creating a donut shop object constructor
 
+
   var createShop = function(name, minCust, maxCust, perCust, hrsOpen) {
     this.name = name;
     this.minCust = minCust;
     this.maxCust = maxCust;
     this.perCust = perCust;
     this.hrsOpen = hrsOpen;
-    this.getCustPerHour = function() {
-      var perHour = [];
-      for(counter = 0; counter < this.hrsOpen;counter++){
-          perHour.push(Math.floor(Math.random() * (this.maxCust - this.minCust + 1)) + this.minCust);
-        };
-        return perHour;
-    }
-    this.getDonutsPerHour = function(customers){
-      var donutsSold = Math.ceil(customers * this.perCust);
-      return donutsSold;
-    }
+    this.perHour = function() {
+        var totalCust = 0;
+        var totalDonuts = 0;
+
+        for(counter = 0; counter < this.hrsOpen; counter++) {
+          //hour number
+          var hour = counter+1
+          //random number of customers per hour
+          var numCust = Math.floor(Math.random() * (this.maxCust - this.minCust + 1)) + this.minCust;
+          totalCust= totalCust+numCust;
+          //number of donuts per hour
+          var numDonut = Math.ceil(numCust * this.perCust);
+          totalDonuts += numDonut;
+          //write data to tables
+          document.write("<tr><td>" + hour+"</td><td>"+numCust+"</td><td>"+ numDonut + "</td></tr>");
+        }
+        document.write("<tr><th>Total</hd>");
+        document.write("<th>"+totalCust+"</th>");
+        document.write("<th>"+totalDonuts+"</th></tr>");
+    };
   }
 
 //Adding specific shop data and pushing into an array that can be looped through
