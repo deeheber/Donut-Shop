@@ -11,25 +11,13 @@
         <hr>
         <br>
             <script type="text/javascript">
-          //loop through the shops array and write out a row for each shop
-            for(index = 0; index < shops.length; index++){
-              document.write("<h2>" + shops[index].name + "</h2>");
-              document.write("<table><tr>");
-              document.write("<th>Min Customer</th>");
-              document.write("<th>Max Customer</th>");
-              document.write("<th>Avg Donut/Customer</th>");
-              document.write("</tr><tr>");
-              document.write("<td>" + shops[index].minCust + "</td>");
-              document.write("<td>" + shops[index].maxCust + "</td>");
-              document.write("<td>" + shops[index].perCust + "</td></tr>");
-              document.write("<tr><th>Hour</th>");
-              document.write("<th>Number of Customers</th>");
-              document.write("<th>Donuts Sold</th></tr>");
-              shops[index].perHour();
-              document.write("</table>");
-            }
+              for(index = 0; index < shops.length; index++){
+                //loop through the shops array and write data to seperate tables
+                  document.write(shops[index].writeTableData());
+                //write hours, customers each hour, donuts sold each hour
+                  shops[index].perHour();
+                  document.write("</table>");
+              }
             </script>
-
-
     </body>
   </html>

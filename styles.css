@@ -1,8 +1,3 @@
-/*Color palette
-    light blue #61CDF5
-    black #333
-    grey #bbb
-*/
 body {
     background-color: #bbb;
     color: #333;
@@ -19,6 +14,7 @@ h1 {
 h2 {
     font-size: 2.5em;
     text-align: center;
+    text-shadow: 0 0 5px #FFF;
 }
 
 table {
@@ -44,13 +40,6 @@ td {
     padding: 1%;
 
 }
-
-/* For checkered gray and white color
-tr:nth-child(even) td:nth-child(odd),
-tr:nth-child(odd) td:nth-child(even) {
-    background-color: #FFF;
-}
-*/
 
 tr:nth-child(even) {background-color: #FFF;}
 

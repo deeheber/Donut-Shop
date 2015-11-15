@@ -1,12 +1,28 @@
-//Creating a donut shop object constructor
-
-
-  var createShop = function(name, minCust, maxCust, perCust, hrsOpen) {
+    //Creating a donut shop object constructor
+var createShop = function(name, minCust, maxCust, perCust, hrsOpen) {
     this.name = name;
     this.minCust = minCust;
     this.maxCust = maxCust;
     this.perCust = perCust;
     this.hrsOpen = hrsOpen;
+
+    this.writeTableData = function() {
+      var tableData = "<h2>" + this.name + "</h2>";
+      tableData += "<table><tr>";
+      tableData += "<th>Min Customer</th>";
+      tableData += "<th>Max Customer</th>";
+      tableData += "<th>Avg Donut/Customer</th>";
+      tableData += "</tr></tr>";
+      tableData += "<td>" + this.minCust + "</td>";
+      tableData += "<td>" + this.maxCust + "</td>";
+      tableData += "<td>" + this.perCust + "</td></tr>";
+      tableData += "<tr><th>Hour</th>";
+      tableData += "<th>Number of Customers</th>";
+      tableData += "<th>Donuts Sold</th></tr>";
+      return tableData;
+    };
+
+    //Calculate and store hours, customers each hour, donuts to make each hour
     this.perHour = function() {
         var totalCust = 0;
         var totalDonuts = 0;
