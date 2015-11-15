@@ -35,5 +35,5 @@
       shops.push(new createShop("Blue Star", 8, 43, 4.5, 11));
       shops.push(new createShop("Voodoo", 4, 37, 2, 24));
       shops.push(new createShop("Cosco", 9, 23, 6.33, 11));
-      shops.push(new createShop("Tonallis Donuts", 2, 28, 1.25, 17));
+      shops.push(new createShop("Tonallis Donuts & Cream", 2, 28, 1.25, 17));
       shops.push(new createShop("Sesame", 8, 58, 3.75, 24));

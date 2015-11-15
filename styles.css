@@ -39,14 +39,19 @@ th {
 }
 
 td {
-    border-left: 1px #333 solid;
+    border: 1px #333 solid;
     padding: 1%;
+
 }
 
+/* For checkered gray and white color
 tr:nth-child(even) td:nth-child(odd),
 tr:nth-child(odd) td:nth-child(even) {
     background-color: #FFF;
 }
+*/
+
+tr:nth-child(even) {background-color: #FFF;}
 
 .name {
     text-align: left;
