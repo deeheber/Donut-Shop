@@ -13,8 +13,10 @@
         };
         return perHour;
     }
-    this.donutsPerHour = Math.ceil(this.custPerHour * this.perCust);
-
+    this.getDonutsPerHour = function(customers){
+      var donutsSold = Math.ceil(customers * this.perCust);
+      return donutsSold;
+    }
   }
 
 //Adding specific shop data and pushing into an array that can be looped through
