@@ -6,20 +6,14 @@
     this.maxCust = maxCust;
     this.perCust = perCust;
     this.hrsOpen = hrsOpen;
-    this.custPerDay = (Math.floor(Math.random() * (this.maxCust - this.minCust + 1)) + this.minCust);
-
-    this.donutsPerDay = Math.ceil(this.custPerDay * this.perCust);
-
-    this.writeTableData = function() {
-        var tableRow = "<tr><td>" + this.name + "</td>";
-        tableRow += "<td>" + this.minCust + "</td>";
-        tableRow += "<td>" + this.maxCust + "</td>";
-        tableRow += "<td>" + this.perCust + "</td>";
-        tableRow += "<td>" + this.hrsOpen + "</td>";
-        tableRow += "<td>" + this.custPerDay + "</td>";
-        tableRow += "<td>" + this.donutsPerDay + "</td></tr>";
-        return tableRow;
-    };
+    this.getCustPerHour = function() {
+      var perHour = [];
+      for(counter = 0; counter < this.hrsOpen;counter++){
+          perHour.push(Math.floor(Math.random() * (this.maxCust - this.minCust + 1)) + this.minCust);
+        };
+        return perHour;
+    }
+    this.donutsPerHour = Math.ceil(this.custPerHour * this.perCust);
 
   }
 

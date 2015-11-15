@@ -10,23 +10,31 @@
       <h1>Portland's Best Donut Shops</h1>
         <hr>
         <br>
-          <table>
-            <tr>
-              <th class = "name">Shop Name</th>
-              <th>Min Customers</th>
-              <th>Max Customers</th>
-              <th>Avg Donut/Customer</th>
-              <th>Hours Open</th>
-              <th>Customers/Day</th>
-              <th>Donuts/Day</th>
-            </tr>
             <script type="text/javascript">
           //loop through the shops array and write out a row for each shop
             for(index = 0; index < shops.length; index++){
-              document.write(shops[index].writeTableData());
+              document.write("<h2>" + shops[index].name + "</h2>");
+              document.write("<table><tr>");
+              document.write("<th>Min Customer</th>");
+              document.write("<th>Max Customer</th>");
+              document.write("<th>Avg Donut/Customer</th>");
+              document.write("</tr><tr>");
+              document.write("<td>" + shops[index].minCust + "</td>");
+              document.write("<td>" + shops[index].maxCust + "</td>");
+              document.write("<td>" + shops[index].perCust + "</td></tr>");
+              document.write("<tr><th>Hour</th>");
+              document.write("<th>Number of Customers</th>");
+              document.write("<th>Donuts Sold</th></tr>");
+              var custPerHour = shops[index].getCustPerHour();
+              for(counter = 0; counter < custPerHour.length; counter++) {
+                console.log((counter+1)+": "+custPerHour[counter]);
+                document.write("<tr><td>"+(counter+1)+"</td>");
+                document.write("<td>"+custPerHour[counter]+"</td></tr>");
+              }
+
+              document.write("</table>");
             }
             </script>
-          </table>
 
 
     </body>
