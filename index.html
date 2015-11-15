@@ -25,11 +25,12 @@
               document.write("<tr><th>Hour</th>");
               document.write("<th>Number of Customers</th>");
               document.write("<th>Donuts Sold</th></tr>");
-              var custPerHour = shops[index].getCustPerHour();
-              for(counter = 0; counter < custPerHour.length; counter++) {
-                console.log((counter+1)+": "+custPerHour[counter]);
+              this.custPerHour = shops[index].getCustPerHour();
+              for(var counter = 0; counter < custPerHour.length; counter++) {
                 document.write("<tr><td>"+(counter+1)+"</td>");
-                document.write("<td>"+custPerHour[counter]+"</td></tr>");
+                document.write("<td>"+custPerHour[counter]+"</td>");
+                document.write("<td>" + (Math.ceil(shops[index].perCust * custPerHour[counter])) + "</td></tr>"); //donuts per hour here
+
               }
 
               document.write("</table>");
