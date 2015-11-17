@@ -1,6 +1,8 @@
 body {
     background-color: #bbb;
     color: #333;
+    text-align: center;
+    font-family: helvetica, sans-serif;
 }
 
 h1 {
@@ -15,6 +17,12 @@ h2 {
     font-size: 2.5em;
     text-align: center;
     text-shadow: 0 0 5px #FFF;
+}
+
+h3 {
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 2em;
 }
 
 table {
@@ -43,3 +51,17 @@ td {
 
 tr:nth-child(even) {background-color: #FFF;}
 
+select {
+    display: block;
+    margin: 0 auto;
+    font-size: 150%;
+}
+/***Hides shop info tables***/
+.hide {
+    display: none;
+}
+
+/***Shows shop info tables***/
+.show {
+    display: block;
+}

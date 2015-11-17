@@ -6,8 +6,9 @@ var createShop = function(name, minCust, maxCust, perCust, hrsOpen) {
     this.perCust = perCust;
     this.hrsOpen = hrsOpen;
 
-    this.writeTableData = function() {
-      var tableData = "<h2>" + this.name + "</h2>";
+    this.writeTableData = function(idName) {
+      var tableData = "<div class='hide'>";
+      tableData +="<h2>" + this.name + "</h2>";
       tableData += "<table><tr>";
       tableData += "<th>Min Customer</th>";
       tableData += "<th>Max Customer</th>";
@@ -22,21 +23,21 @@ var createShop = function(name, minCust, maxCust, perCust, hrsOpen) {
       return tableData;
     };
 
-    //Calculate and store hours, customers each hour, donuts to make each hour
+    /*Calculate and store hours, customers each hour, donuts to make each hour*/
     this.perHour = function() {
         var totalCust = 0;
         var totalDonuts = 0;
 
         for(counter = 0; counter < this.hrsOpen; counter++) {
-          //hour number
+          /*hour number*/
           var hour = counter+1
-          //random number of customers per hour
+          /*random number of customers per hour*/
           var numCust = Math.floor(Math.random() * (this.maxCust - this.minCust + 1)) + this.minCust;
           totalCust= totalCust+numCust;
-          //number of donuts per hour
+          /*number of donuts per hour*/
           var numDonut = Math.ceil(numCust * this.perCust);
           totalDonuts += numDonut;
-          //write data to tables
+          /*write data to tables*/
           document.write("<tr><td>" + hour+"</td><td>"+numCust+"</td><td>"+ numDonut + "</td></tr>");
         }
         document.write("<tr><th>Total</hd>");
@@ -45,7 +46,22 @@ var createShop = function(name, minCust, maxCust, perCust, hrsOpen) {
     };
   }
 
-//Adding specific shop data and pushing into an array that can be looped through
+/*Click function that fires when selecting a shop from the drop down*/
+  function showShop(selection) {
+    var shopNames = document.getElementsByTagName('h2');
+       for (index=0; index < shopNames.length; index++) {
+          var shopLocation = shopNames[index].textContent;
+          if(shopLocation == selection) {
+            shopNames[index].parentNode.className = 'show';
+          }
+          else {
+            shopNames[index].parentNode.className = 'hide';
+          }
+      }
+
+  }
+
+/*Adding specific shop data and pushing into an array that can be looped through*/
 
   var shops = new Array();
       shops.push(new createShop("Blue Star", 8, 43, 4.5, 11));
