@@ -6,8 +6,9 @@ var createShop = function(name, minCust, maxCust, perCust, hrsOpen) {
     this.perCust = perCust;
     this.hrsOpen = hrsOpen;
 
-    this.writeTableData = function(idName) {
-      var tableData = "<div class='hide'>";
+    this.writeTableData = function(index) {
+      //var tableData = "<div id = " + 'table' + index + ">";
+      var tableData = "<div id = " + 'table' + index + " class = 'hide'>";
       tableData +="<h2>" + this.name + "</h2>";
       tableData += "<table><tr>";
       tableData += "<th>Min Customer</th>";
@@ -47,18 +48,18 @@ var createShop = function(name, minCust, maxCust, perCust, hrsOpen) {
   }
 
 /*Click function that fires when selecting a shop from the drop down*/
-  function showShop(selection) {
-    var shopNames = document.getElementsByTagName('h2');
-       for (index=0; index < shopNames.length; index++) {
-          var shopLocation = shopNames[index].textContent;
-          if(shopLocation == selection) {
-            shopNames[index].parentNode.className = 'show';
-          }
-          else {
-            shopNames[index].parentNode.className = 'hide';
-          }
-      }
-
+  function showShop(selectedShop) {
+    /* Grab all Div elements that contain the tables */
+    var tables = document.getElementsByTagName('div');
+    for(index = 0 ; index < tables.length; index++ ) {
+        var currentTable = (document.getElementById('table' + index));
+        if (('table' + selectedShop) === currentTable.id) {
+          currentTable.setAttribute("class", "show");
+        }
+        else {
+          currentTable.setAttribute("class", "hide");
+        }
+    }
   }
 
 /*Adding specific shop data and pushing into an array that can be looped through*/
@@ -66,6 +67,6 @@ var createShop = function(name, minCust, maxCust, perCust, hrsOpen) {
   var shops = new Array();
       shops.push(new createShop("Blue Star", 8, 43, 4.5, 11));
       shops.push(new createShop("Voodoo", 4, 37, 2, 24));
-      shops.push(new createShop("Cosco", 9, 23, 6.33, 11));
+      shops.push(new createShop("Coco", 9, 23, 6.33, 11));
       shops.push(new createShop("Tonallis Donuts & Cream", 2, 28, 1.25, 17));
       shops.push(new createShop("Sesame", 8, 58, 3.75, 24));

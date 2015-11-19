@@ -56,7 +56,7 @@ select {
     margin: 0 auto;
     font-size: 150%;
 }
-/***Hides shop info tables***/
+/***Hides shop info tables --- default setting***/
 .hide {
     display: none;
 }

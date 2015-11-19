@@ -12,17 +12,19 @@
           <h3>Select a shop to see more info: </h3>
             <select id="shopList" onChange=showShop(options[selectedIndex].id)>
               <option></option>
-              <option id="Blue Star"> Blue Star</option>
-              <option id="Voodoo">Voodoo</option>
-              <option id="Cosco">Cosco</option>
-              <option id="Tonallis Donuts & Cream">Tonallis Donuts & Cream</option>
-              <option id="Sesame">Sesame</option>
+              <option id="0"> Blue Star</option>
+              <option id="1">Voodoo</option>
+              <option id="2">Coco</option>
+              <option id="3">Tonallis Donuts & Cream</option>
+              <option id="4">Sesame</option>
             </select>
         <br>
             <script type="text/javascript">
-              for(index = 0; index < shops.length; index++){
+              var idNum;
+              for(var index = 0; index < shops.length; index++){
+                  idNum = index;
                 /*loop through the shops array and write data to seperate tables*/
-                  document.write(shops[index].writeTableData());
+                  document.write(shops[index].writeTableData(idNum));
                 /*write hours, customers each hour, donuts sold each hour*/
                   shops[index].perHour();
                   document.write("</table></div>");
