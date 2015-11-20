@@ -50,7 +50,7 @@ var createShop = function(name, minCust, maxCust, perCust, hrsOpen) {
 
   }
 
-/*Click function that fires when selecting a shop from the drop down*/
+/***Show the selected shop information and hide all others***/
   function showShop(selectedShop) {
     /* Grab all Div elements that contain the tables */
     var tables = document.getElementsByTagName('div');
@@ -69,7 +69,7 @@ var createShop = function(name, minCust, maxCust, perCust, hrsOpen) {
     /*alert("shop number: " +index + " value: " + parseFloat(document.getElementsByName('minCust')[index].value));*/
 
     /*get new input value and store it in a variable */
-    var newMinCust = parseFloat(document.getElementsByName('minCust')[index].value);
+    var newMinCust = parseInt(document.getElementsByName('minCust')[index].value);
     /*pass the new input value into this.minCust for the correct shop*/
     shops[index].minCust = newMinCust;
     /*Recalulate table*/
@@ -99,7 +99,7 @@ var createShop = function(name, minCust, maxCust, perCust, hrsOpen) {
     /*alert("shop number: " +index + " value: " + parseFloat(document.getElementsByName('minCust')[index].value));*/
 
     /*get new input value and store it in a variable */
-    var newMaxCust = parseFloat(document.getElementsByName('maxCust')[index].value);
+    var newMaxCust = parseInt(document.getElementsByName('maxCust')[index].value);
     /*pass the new input value into this.minCust for the correct shop*/
     shops[index].maxCust = newMaxCust;
     /*Recalulate table*/
@@ -159,12 +159,20 @@ var createShop = function(name, minCust, maxCust, perCust, hrsOpen) {
 
     /*get new input value and store it in a variable */
     var newHrsOpen = parseInt(document.getElementsByName('hrsOpen')[index].value);
+
+    /**Checks to see if hrs open is less than or equal to 24 hrs**/
+    if ((newHrsOpen > 24) || (newHrsOpen <= 0)) {
+      alert("Please enter a number between 1 and 24.");
+      document.getElementsByName('hrsOpen')[index].value = shops[index].hrsOpen;
+    }
+    else {
     /*pass the new input value into this.minCust for the correct shop*/
     shops[index].hrsOpen = newHrsOpen;
     /*Recalulate table*/
     var displayTable = document.getElementById('table' + index);
     displayTable.innerHTML = writeNewHrsOpen(index)
                   + shops[index].perHour(index) + "</table></div>";
+    }
   }
   /****Updates the innerHTML for the hrs open update ***/
   function writeNewHrsOpen(index) {
@@ -183,7 +191,7 @@ var createShop = function(name, minCust, maxCust, perCust, hrsOpen) {
       return tableData;
     }
 
-/*Adding specific shop data and pushing into an array that can be looped through*/
+/***Adding specific shop data and pushing into an array that can be looped through***/
 
   var shops = new Array();
       shops.push(new createShop("Blue Star", 8, 43, 4.5, 11));
