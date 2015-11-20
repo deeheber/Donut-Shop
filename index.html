@@ -29,7 +29,7 @@
                   idNum = index;
                 /*loop through the shops array and write data to seperate tables*/
                 mainContent.innerHTML += (shops[index].writeTableData(idNum)
-                  + shops[index].perHour()
+                  + shops[index].perHour(index)
                   + "</table></div>");
 
               }

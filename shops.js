@@ -24,7 +24,7 @@ var createShop = function(name, minCust, maxCust, perCust, hrsOpen) {
     };
 
     /*Calculate and store hours, customers each hour, donuts to make each hour*/
-    this.perHour = function() {
+    this.perHour = function(index) {
         var totalCust = 0;
         var totalDonuts = 0;
         var secondaryTableData = '';
@@ -42,7 +42,7 @@ var createShop = function(name, minCust, maxCust, perCust, hrsOpen) {
             secondaryTableData += "<tr><td>" + hour+"</td><td>"+numCust+"</td><td>"+ numDonut + "</td></tr>";
         }
 
-        secondaryTableData+= "<tr><th>Total</hd>";
+        secondaryTableData+= "<tr><th><input type='number' name='hrsOpen' onChange=hrsOpenUpdate("+ index +") value= "+this.hrsOpen+"></th>";
         secondaryTableData+="<th>"+totalCust+"</th>";
         secondaryTableData+="<th>"+totalDonuts+"</th></tr>";
         return secondaryTableData;
@@ -75,7 +75,7 @@ var createShop = function(name, minCust, maxCust, perCust, hrsOpen) {
     /*Recalulate table*/
     var displayTable = document.getElementById('table' + index);
     displayTable.innerHTML = writeNewMinCust(index, newMinCust)
-                  + shops[index].perHour() + "</table></div>";
+                  + shops[index].perHour(index) + "</table></div>";
   }
   /****Updates the innerHTML for the min cust update ***/
   function writeNewMinCust(index, newMinCust) {
@@ -105,7 +105,7 @@ var createShop = function(name, minCust, maxCust, perCust, hrsOpen) {
     /*Recalulate table*/
     var displayTable = document.getElementById('table' + index);
     displayTable.innerHTML = writeNewMaxCust(index, newMaxCust)
-                  + shops[index].perHour() + "</table></div>";
+                  + shops[index].perHour(index) + "</table></div>";
   }
   /****Updates the innerHTML for the max cust update ***/
   function writeNewMaxCust(index, newMaxCust) {
@@ -135,7 +135,7 @@ var createShop = function(name, minCust, maxCust, perCust, hrsOpen) {
     /*Recalulate table*/
     var displayTable = document.getElementById('table' + index);
     displayTable.innerHTML = writeNewPerCust(index, newPerCust)
-                  + shops[index].perHour() + "</table></div>";
+                  + shops[index].perHour(index) + "</table></div>";
   }
   /****Updates the innerHTML for the per cust update ***/
   function writeNewPerCust(index, newPerCust) {
@@ -148,6 +148,35 @@ var createShop = function(name, minCust, maxCust, perCust, hrsOpen) {
       tableData += "<td><input type='number' name='minCust' onChange=minCustUpdate("+ index +") value= "+shops[index].minCust+"></td>";
       tableData += "<td><input type='number' name='maxCust' onChange=maxCustUpdate("+ index +") value=" +shops[index].maxCust+"></td>";
       tableData += "<td><input type='number' name='perCust' onChange=perCustUpdate("+ index +") value=" +newPerCust+"></td></tr>";
+      tableData += "<tr><th>Hour</th>";
+      tableData += "<th>Number of Customers</th>";
+      tableData += "<th>Donuts Sold</th></tr>";
+      return tableData;
+    }
+/***Prompts the table info to update when the user changes the hrs Open number***/
+  function hrsOpenUpdate(index) {
+    /*alert("shop number: " +index + " value: " + parseFloat(document.getElementsByName('hrsOpen')[index].value));*/
+
+    /*get new input value and store it in a variable */
+    var newHrsOpen = parseInt(document.getElementsByName('hrsOpen')[index].value);
+    /*pass the new input value into this.minCust for the correct shop*/
+    shops[index].hrsOpen = newHrsOpen;
+    /*Recalulate table*/
+    var displayTable = document.getElementById('table' + index);
+    displayTable.innerHTML = writeNewHrsOpen(index)
+                  + shops[index].perHour(index) + "</table></div>";
+  }
+  /****Updates the innerHTML for the hrs open update ***/
+  function writeNewHrsOpen(index) {
+      var tableData ="<h2>" + shops[index].name + "</h2>";
+      tableData += "<table><tr>";
+      tableData += "<th>Min Customer</th>";
+      tableData += "<th>Max Customer</th>";
+      tableData += "<th>Avg Donut/Customer</th>";
+      tableData += "</tr></tr>";
+      tableData += "<td><input type='number' name='minCust' onChange=minCustUpdate("+ index +") value= "+shops[index].minCust+"></td>";
+      tableData += "<td><input type='number' name='maxCust' onChange=maxCustUpdate("+ index +") value=" +shops[index].maxCust+"></td>";
+      tableData += "<td><input type='number' name='perCust' onChange=perCustUpdate("+ index +") value=" +shops[index].perCust+"></td></tr>";
       tableData += "<tr><th>Hour</th>";
       tableData += "<th>Number of Customers</th>";
       tableData += "<th>Donuts Sold</th></tr>";
