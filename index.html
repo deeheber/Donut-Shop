@@ -19,15 +19,18 @@
               <option id="4">Sesame</option>
             </select>
         <br>
+
+        <section id="mainContent">
+        </section>
             <script type="text/javascript">
               var idNum;
+              var mainContent = document.getElementById('mainContent');
               for(var index = 0; index < shops.length; index++){
                   idNum = index;
                 /*loop through the shops array and write data to seperate tables*/
-                  document.write(shops[index].writeTableData(idNum));
-                /*write hours, customers each hour, donuts sold each hour*/
-                  shops[index].perHour();
-                  document.write("</table></div>");
+                mainContent.innerHTML += (shops[index].writeTableData(idNum)
+                  + shops[index].perHour()
+                  + "</table></div>");
 
               }
 
