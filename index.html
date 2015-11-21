@@ -10,7 +10,7 @@
       <h1>Portland's Best Donut Shops</h1>
         <hr>
           <h3>Select a shop to see more info: </h3>
-            <select id="shopList" onChange=showShop(options[selectedIndex].id)>
+            <select id="shopList">
               <option></option>
               <option id="0"> Blue Star</option>
               <option id="1">Voodoo</option>
@@ -32,6 +32,8 @@
                   + shops[index].perHour(index)
                   + "</table></div>");
               }
+              /**Adding event listener for the main drop down hide/show menu**/
+              document.getElementById("shopList").addEventListener("change", preShowShop);
               /**Adding event listeners for each input field**/
               for (var index=0; index < document.getElementsByTagName("input").length; index++) {
                 document.getElementsByTagName("input")[index].addEventListener("change", initial);

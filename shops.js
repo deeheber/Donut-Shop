@@ -109,11 +109,18 @@ var createShop = function(name, minCust, maxCust, perCust, hrsOpen) {
       tableData += "<th>Donuts Sold</th></tr>";
       return tableData;
     }
-
+/**Fires when input value is changed**/
     function initial(){
       var getSelectedTable = document.getElementsByClassName("show")[0].id;
       var index = getSelectedTable.charAt(5);
       updateInfo(index);
+    }
+
+/**Fires when the shop select menu changes**/
+    function preShowShop(){
+      var selectedIndex = document.getElementById('shopList').selectedIndex;
+      var selectedIndexId = selectedIndex - 1;
+      showShop(selectedIndexId);
     }
 
 /***Adding specific shop data and pushing into an array that can be looped through***/

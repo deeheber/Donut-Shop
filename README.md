@@ -7,3 +7,6 @@ Enhancement ideas:
 3. Can't have a negative or zero minCust, maxCust, perCust
 4. All input fields will only allow numbers.
 5. Input fields can't be blank
+
+
+//onChange=showShop(options[selectedIndex].id)
