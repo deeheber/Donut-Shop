@@ -14,9 +14,9 @@ var createShop = function(name, minCust, maxCust, perCust, hrsOpen) {
       tableData += "<th>Max Customer</th>";
       tableData += "<th>Avg Donut/Customer</th>";
       tableData += "</tr></tr>";
-      tableData += "<td><input type='number' name='minCust' onChange=updateInfo("+ index +") value= "+this.minCust+"></td>";
-      tableData += "<td><input type='number' name='maxCust' onChange=updateInfo("+ index +") value=" +this.maxCust+"></td>";
-      tableData += "<td><input type='number' name='perCust' onChange=updateInfo("+ index +") value=" +this.perCust+"></td></tr>";
+      tableData += "<td><input type='number' name='minCust' value= "+this.minCust+"></td>";
+      tableData += "<td><input type='number' name='maxCust' value=" +this.maxCust+"></td>";
+      tableData += "<td><input type='number' name='perCust' value=" +this.perCust+"></td></tr>";
       tableData += "<tr><th>Hour</th>";
       tableData += "<th>Number of Customers</th>";
       tableData += "<th>Donuts Sold</th></tr>";
@@ -42,7 +42,7 @@ var createShop = function(name, minCust, maxCust, perCust, hrsOpen) {
             secondaryTableData += "<tr><td>" + hour+"</td><td>"+numCust+"</td><td>"+ numDonut + "</td></tr>";
         }
 
-        secondaryTableData+= "<tr><th><input type='number' name='hrsOpen' onChange=updateInfo("+ index +") value= "+this.hrsOpen+"></th>";
+        secondaryTableData+= "<tr><th><input type='number' name='hrsOpen' value= "+this.hrsOpen+"></th>";
         secondaryTableData+="<th>"+totalCust+"</th>";
         secondaryTableData+="<th>"+totalDonuts+"</th></tr>";
         return secondaryTableData;
@@ -66,7 +66,7 @@ var createShop = function(name, minCust, maxCust, perCust, hrsOpen) {
   }
 /***Prompts the table info to update when the user changes minCust, maxCust, perCust***/
   function updateInfo(index) {
-    /*get new input value and store it in a variable */
+    /*get current input values and store them in variables */
     var newMinCust = parseInt(document.getElementsByName('minCust')[index].value);
     var newMaxCust = parseInt(document.getElementsByName('maxCust')[index].value);
     var newPerCust = parseFloat(document.getElementsByName('perCust')[index].value);
@@ -87,6 +87,10 @@ var createShop = function(name, minCust, maxCust, perCust, hrsOpen) {
             var displayTable = document.getElementById('table' + index);
             displayTable.innerHTML = writeNewInfo(index)
             + shops[index].perHour(index) + "</table></div>";
+            /**Adding Event Listeners for each input field on the entire page**/
+              for (var index=0; index < document.getElementsByTagName("input").length; index++) {
+                document.getElementsByTagName("input")[index].addEventListener("change", initial);
+              }
           }
   }
   /****Updates the innerHTML for the minCust, maxCust, perCust change ***/
@@ -97,13 +101,19 @@ var createShop = function(name, minCust, maxCust, perCust, hrsOpen) {
       tableData += "<th>Max Customer</th>";
       tableData += "<th>Avg Donut/Customer</th>";
       tableData += "</tr></tr>";
-      tableData += "<td><input type='number' name='minCust' onChange=updateInfo("+ index +") value= "+shops[index].minCust+"></td>";
-      tableData += "<td><input type='number' name='maxCust' onChange=updateInfo("+ index +") value=" +shops[index].maxCust+"></td>";
-      tableData += "<td><input type='number' name='perCust' onChange=updateInfo("+ index +") value=" +shops[index].perCust+"></td></tr>";
+      tableData += "<td><input type='number' name='minCust' value= "+shops[index].minCust+"></td>";
+      tableData += "<td><input type='number' name='maxCust' value=" +shops[index].maxCust+"></td>";
+      tableData += "<td><input type='number' name='perCust' value=" +shops[index].perCust+"></td></tr>";
       tableData += "<tr><th>Hour</th>";
       tableData += "<th>Number of Customers</th>";
       tableData += "<th>Donuts Sold</th></tr>";
       return tableData;
+    }
+
+    function initial(){
+      var getSelectedTable = document.getElementsByClassName("show")[0].id;
+      var index = getSelectedTable.charAt(5);
+      updateInfo(index);
     }
 
 /***Adding specific shop data and pushing into an array that can be looped through***/

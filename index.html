@@ -31,9 +31,11 @@
                 mainContent.innerHTML += (shops[index].writeTableData(idNum)
                   + shops[index].perHour(index)
                   + "</table></div>");
-
               }
-
+              /**Adding event listeners for each input field**/
+              for (var index=0; index < document.getElementsByTagName("input").length; index++) {
+                document.getElementsByTagName("input")[index].addEventListener("change", initial);
+              }
             </script>
     </body>
   </html>
