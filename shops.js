@@ -50,6 +50,22 @@ var createShop = function(name, minCust, maxCust, perCust, hrsOpen) {
 
   }
 
+/***Adding specific shop data and pushing into an array that can be looped through***/
+
+  var shops = new Array();
+      shops.push(new createShop("Blue Star", 8, 43, 4.5, 11));
+      shops.push(new createShop("Voodoo", 4, 37, 2, 24));
+      shops.push(new createShop("Coco", 9, 23, 6.33, 11));
+      shops.push(new createShop("Tonallis Donuts & Cream", 2, 28, 1.25, 17));
+      shops.push(new createShop("Sesame", 8, 58, 3.75, 24));
+
+/**Fires when the shop select menu changes**/
+    function preShowShop(){
+      var selectedIndex = document.getElementById('shopList').selectedIndex;
+      var selectedIndexId = selectedIndex - 1;
+      showShop(selectedIndexId);
+    }
+
 /***Show the selected shop information and hide all others***/
   function showShop(selectedShop) {
     /* Grab all Div elements that contain the tables */
@@ -64,6 +80,14 @@ var createShop = function(name, minCust, maxCust, perCust, hrsOpen) {
         }
     }
   }
+
+/**Fires when input value is changed**/
+    function initial(){
+      var getSelectedTable = document.getElementsByClassName("show")[0].id;
+      var index = getSelectedTable.charAt(5);
+      updateInfo(index);
+    }
+
 /***Prompts the table info to update when the user changes minCust, maxCust, perCust***/
   function updateInfo(index) {
     /*get current input values and store them in variables */
@@ -109,25 +133,3 @@ var createShop = function(name, minCust, maxCust, perCust, hrsOpen) {
       tableData += "<th>Donuts Sold</th></tr>";
       return tableData;
     }
-/**Fires when input value is changed**/
-    function initial(){
-      var getSelectedTable = document.getElementsByClassName("show")[0].id;
-      var index = getSelectedTable.charAt(5);
-      updateInfo(index);
-    }
-
-/**Fires when the shop select menu changes**/
-    function preShowShop(){
-      var selectedIndex = document.getElementById('shopList').selectedIndex;
-      var selectedIndexId = selectedIndex - 1;
-      showShop(selectedIndexId);
-    }
-
-/***Adding specific shop data and pushing into an array that can be looped through***/
-
-  var shops = new Array();
-      shops.push(new createShop("Blue Star", 8, 43, 4.5, 11));
-      shops.push(new createShop("Voodoo", 4, 37, 2, 24));
-      shops.push(new createShop("Coco", 9, 23, 6.33, 11));
-      shops.push(new createShop("Tonallis Donuts & Cream", 2, 28, 1.25, 17));
-      shops.push(new createShop("Sesame", 8, 58, 3.75, 24));
