@@ -7,4 +7,3 @@ Enhancement ideas:
 3. Can't have a negative or zero minCust, maxCust, perCust
 4. All input fields will only allow numbers.
 5. Input fields can't be blank
-6. Find a way to consolidate functions for updating maxCust, minCust, perCust, and hrsOpen

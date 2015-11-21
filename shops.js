@@ -14,9 +14,9 @@ var createShop = function(name, minCust, maxCust, perCust, hrsOpen) {
       tableData += "<th>Max Customer</th>";
       tableData += "<th>Avg Donut/Customer</th>";
       tableData += "</tr></tr>";
-      tableData += "<td><input type='number' name='minCust' onChange=minCustUpdate("+ index +") value= "+this.minCust+"></td>";
-      tableData += "<td><input type='number' name='maxCust' onChange=maxCustUpdate("+ index +") value=" +this.maxCust+"></td>";
-      tableData += "<td><input type='number' name='perCust' onChange=perCustUpdate("+ index +") value=" +this.perCust+"></td></tr>";
+      tableData += "<td><input type='number' name='minCust' onChange=updateInfo("+ index +") value= "+this.minCust+"></td>";
+      tableData += "<td><input type='number' name='maxCust' onChange=updateInfo("+ index +") value=" +this.maxCust+"></td>";
+      tableData += "<td><input type='number' name='perCust' onChange=updateInfo("+ index +") value=" +this.perCust+"></td></tr>";
       tableData += "<tr><th>Hour</th>";
       tableData += "<th>Number of Customers</th>";
       tableData += "<th>Donuts Sold</th></tr>";
@@ -64,95 +64,41 @@ var createShop = function(name, minCust, maxCust, perCust, hrsOpen) {
         }
     }
   }
-/***Prompts the table info to update when the user changes the min cust number***/
-  function minCustUpdate(index) {
+/***Prompts the table info to update when the user changes minCust, maxCust, perCust***/
+  function updateInfo(index) {
     /*alert("shop number: " +index + " value: " + parseFloat(document.getElementsByName('minCust')[index].value));*/
 
     /*get new input value and store it in a variable */
     var newMinCust = parseInt(document.getElementsByName('minCust')[index].value);
-    /*pass the new input value into this.minCust for the correct shop*/
-    shops[index].minCust = newMinCust;
-    /*Recalulate table*/
-    var displayTable = document.getElementById('table' + index);
-    displayTable.innerHTML = writeNewMinCust(index, newMinCust)
-                  + shops[index].perHour(index) + "</table></div>";
-  }
-  /****Updates the innerHTML for the min cust update ***/
-  function writeNewMinCust(index, newMinCust) {
-      var tableData ="<h2>" + shops[index].name + "</h2>";
-      tableData += "<table><tr>";
-      tableData += "<th>Min Customer</th>";
-      tableData += "<th>Max Customer</th>";
-      tableData += "<th>Avg Donut/Customer</th>";
-      tableData += "</tr></tr>";
-      tableData += "<td><input type='number' name='minCust' onChange=minCustUpdate("+ index +") value= "+newMinCust+"></td>";
-      tableData += "<td><input type='number' name='maxCust' onChange=maxCustUpdate("+ index +") value=" +shops[index].maxCust+"></td>";
-      tableData += "<td><input type='number' name='perCust' onChange=perCustUpdate("+ index +") value=" +shops[index].perCust+"></td></tr>";
-      tableData += "<tr><th>Hour</th>";
-      tableData += "<th>Number of Customers</th>";
-      tableData += "<th>Donuts Sold</th></tr>";
-      return tableData;
-    }
-
-/***Prompts the table info to update when the user changes the max cust number***/
-  function maxCustUpdate(index) {
-    /*alert("shop number: " +index + " value: " + parseFloat(document.getElementsByName('minCust')[index].value));*/
-
-    /*get new input value and store it in a variable */
     var newMaxCust = parseInt(document.getElementsByName('maxCust')[index].value);
-    /*pass the new input value into this.minCust for the correct shop*/
-    shops[index].maxCust = newMaxCust;
-    /*Recalulate table*/
-    var displayTable = document.getElementById('table' + index);
-    displayTable.innerHTML = writeNewMaxCust(index, newMaxCust)
-                  + shops[index].perHour(index) + "</table></div>";
-  }
-  /****Updates the innerHTML for the max cust update ***/
-  function writeNewMaxCust(index, newMaxCust) {
-      var tableData ="<h2>" + shops[index].name + "</h2>";
-      tableData += "<table><tr>";
-      tableData += "<th>Min Customer</th>";
-      tableData += "<th>Max Customer</th>";
-      tableData += "<th>Avg Donut/Customer</th>";
-      tableData += "</tr></tr>";
-      tableData += "<td><input type='number' name='minCust' onChange=minCustUpdate("+ index +") value= "+shops[index].minCust+"></td>";
-      tableData += "<td><input type='number' name='maxCust' onChange=maxCustUpdate("+ index +") value=" +newMaxCust+"></td>";
-      tableData += "<td><input type='number' name='perCust' onChange=perCustUpdate("+ index +") value=" +shops[index].perCust+"></td></tr>";
-      tableData += "<tr><th>Hour</th>";
-      tableData += "<th>Number of Customers</th>";
-      tableData += "<th>Donuts Sold</th></tr>";
-      return tableData;
-    }
-
-  /***Prompts the table info to update when the user changes the per cust number***/
-  function perCustUpdate(index) {
-    /*alert("shop number: " +index + " value: " + parseFloat(document.getElementsByName('perCust')[index].value));*/
-
-    /*get new input value and store it in a variable */
     var newPerCust = parseFloat(document.getElementsByName('perCust')[index].value);
-    /*pass the new input value into this.minCust for the correct shop*/
+    /*pass the new input value into this instance for the correct shop*/
+    shops[index].minCust = newMinCust;
+    shops[index].maxCust = newMaxCust;
     shops[index].perCust = newPerCust;
     /*Recalulate table*/
     var displayTable = document.getElementById('table' + index);
-    displayTable.innerHTML = writeNewPerCust(index, newPerCust)
+    displayTable.innerHTML = writeNewInfo(index)
                   + shops[index].perHour(index) + "</table></div>";
   }
-  /****Updates the innerHTML for the per cust update ***/
-  function writeNewPerCust(index, newPerCust) {
+  /****Updates the innerHTML for the minCust, maxCust, perCust change ***/
+  function writeNewInfo(index) {
       var tableData ="<h2>" + shops[index].name + "</h2>";
       tableData += "<table><tr>";
       tableData += "<th>Min Customer</th>";
       tableData += "<th>Max Customer</th>";
       tableData += "<th>Avg Donut/Customer</th>";
       tableData += "</tr></tr>";
-      tableData += "<td><input type='number' name='minCust' onChange=minCustUpdate("+ index +") value= "+shops[index].minCust+"></td>";
-      tableData += "<td><input type='number' name='maxCust' onChange=maxCustUpdate("+ index +") value=" +shops[index].maxCust+"></td>";
-      tableData += "<td><input type='number' name='perCust' onChange=perCustUpdate("+ index +") value=" +newPerCust+"></td></tr>";
+      tableData += "<td><input type='number' name='minCust' onChange=updateInfo("+ index +") value= "+shops[index].minCust+"></td>";
+      tableData += "<td><input type='number' name='maxCust' onChange=updateInfo("+ index +") value=" +shops[index].maxCust+"></td>";
+      tableData += "<td><input type='number' name='perCust' onChange=updateInfo("+ index +") value=" +shops[index].perCust+"></td></tr>";
       tableData += "<tr><th>Hour</th>";
       tableData += "<th>Number of Customers</th>";
       tableData += "<th>Donuts Sold</th></tr>";
       return tableData;
     }
+
+
 /***Prompts the table info to update when the user changes the hrs Open number***/
   function hrsOpenUpdate(index) {
     /*alert("shop number: " +index + " value: " + parseFloat(document.getElementsByName('hrsOpen')[index].value));*/
@@ -182,9 +128,9 @@ var createShop = function(name, minCust, maxCust, perCust, hrsOpen) {
       tableData += "<th>Max Customer</th>";
       tableData += "<th>Avg Donut/Customer</th>";
       tableData += "</tr></tr>";
-      tableData += "<td><input type='number' name='minCust' onChange=minCustUpdate("+ index +") value= "+shops[index].minCust+"></td>";
-      tableData += "<td><input type='number' name='maxCust' onChange=maxCustUpdate("+ index +") value=" +shops[index].maxCust+"></td>";
-      tableData += "<td><input type='number' name='perCust' onChange=perCustUpdate("+ index +") value=" +shops[index].perCust+"></td></tr>";
+      tableData += "<td><input type='number' name='minCust' onChange=updateInfo("+ index +") value= "+shops[index].minCust+"></td>";
+      tableData += "<td><input type='number' name='maxCust' onChange=updateInfo("+ index +") value=" +shops[index].maxCust+"></td>";
+      tableData += "<td><input type='number' name='perCust' onChange=updateInfo("+ index +") value=" +shops[index].perCust+"></td></tr>";
       tableData += "<tr><th>Hour</th>";
       tableData += "<th>Number of Customers</th>";
       tableData += "<th>Donuts Sold</th></tr>";
