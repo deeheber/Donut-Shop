@@ -95,11 +95,28 @@ var createShop = function(name, minCust, maxCust, perCust, hrsOpen) {
     var newMaxCust = parseInt(document.getElementsByName('maxCust')[index].value);
     var newPerCust = parseFloat(document.getElementsByName('perCust')[index].value);
     var newHrsOpen = parseInt(document.getElementsByName('hrsOpen')[index].value);
-      /**Checks hrs open to make sure it's between 1-24**/
+        /***Run some checks to make sure data entered is valid***/
           if ((newHrsOpen > 24) || (newHrsOpen <= 0)) {
-             /*Throw an error message*/
             alert("Please enter a number between 1 and 24.");
             document.getElementsByName('hrsOpen')[index].value = shops[index].hrsOpen;
+          }
+          else if ((isNaN(newMinCust)) || (isNaN(newMaxCust)) || (isNaN(newPerCust)) || (isNaN(newHrsOpen))) {
+            alert("Oops! \n\nMake sure that you filled out all of the input fields with numbers.");
+            document.getElementsByName('minCust')[index].value = shops[index].minCust;
+            document.getElementsByName('maxCust')[index].value = shops[index].maxCust;
+            document.getElementsByName('perCust')[index].value = shops[index].perCust;
+            document.getElementsByName('hrsOpen')[index].value = shops[index].hrsOpen;
+          }
+          else if (newMinCust >= newMaxCust) {
+            alert("Min Customer must be smaller than Max Customer.\n\nEnter another number please.");
+            document.getElementsByName('minCust')[index].value = shops[index].minCust;
+            document.getElementsByName('maxCust')[index].value = shops[index].maxCust;
+          }
+          else if ((newMinCust < 1) || (newPerCust <= 0)) {
+            alert("Please enter 1 or higher.");
+            document.getElementsByName('minCust')[index].value = shops[index].minCust;
+            document.getElementsByName('perCust')[index].value = shops[index].perCust;
+
           }
           else {
             /*pass the new input value into this instance for the correct shop*/
