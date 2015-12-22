@@ -1,7 +1,7 @@
 <!DOCTYPE html>
   <html>
     <head>
-      <title>CF 201 | Donut Shop</title>
+      <title>Donut Shop Forecaster</title>
       <script type="text/javascript" src="shops.js"></script>
       <link rel="stylesheet" type="text/css" href="styles.css">
     </head>
@@ -9,28 +9,35 @@
     <body>
       <h1>Portland's Best Donut Shops</h1>
         <hr>
+          <h3>Select a shop to see more info: </h3>
+            <select id="shopList">
+              <option></option>
+              <option id="0"> Blue Star</option>
+              <option id="1">Voodoo</option>
+              <option id="2">Coco</option>
+              <option id="3">Tonallis Donuts & Cream</option>
+              <option id="4">Sesame</option>
+            </select>
         <br>
-          <table>
-            <tr>
-              <th class = "name">Shop Name</th>
-              <th>Min Customers</th>
-              <th>Max Customers</th>
-              <th>Avg Donut/Customer</th>
-              <th>Hours Open</th>
-            </tr>
+
+        <section id="mainContent">
+        </section>
             <script type="text/javascript">
-            for(index = 0; index < shops.length; index++){
-              document.write("<tr>");
-              document.write("<td class = 'name'>" + shops[index].name + "</td>");
-              document.write("<td>" + shops[index].minCust + "</td>");
-              document.write("<td>" + shops[index].maxCust + "</td>");
-              document.write("<td>" + shops[index].perCust + "</td>");
-              document.write("<td>" + shops[index].hrsOpen + "</td>");
-              document.write("</tr>");
-            }
+              var idNum;
+              var mainContent = document.getElementById('mainContent');
+              for(var index = 0; index < shops.length; index++){
+                  idNum = index;
+                /*loop through the shops array and write data to seperate tables*/
+                mainContent.innerHTML += (shops[index].writeTableData(idNum)
+                  + shops[index].perHour(index)
+                  + "</table></div>");
+              }
+              /**Adding event listener for the main drop down hide/show menu**/
+              document.getElementById("shopList").addEventListener("change", preShowShop);
+              /**Adding event listeners for each input field**/
+              for (var index=0; index < document.getElementsByTagName("input").length; index++) {
+                document.getElementsByTagName("input")[index].addEventListener("change", initial);
+              }
             </script>
-          </table>
-
-
     </body>
   </html>

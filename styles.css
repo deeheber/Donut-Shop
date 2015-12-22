@@ -1,18 +1,28 @@
-/*Color palette
-    light blue #61CDF5
-    black #333
-    grey #bbb
-*/
 body {
     background-color: #bbb;
     color: #333;
+    text-align: center;
+    font-family: helvetica, sans-serif;
 }
 
 h1 {
+    font-size: 4em;
     text-align: center;
     color: #FFF;
     font-weight: 600;
     text-shadow: 0 0 5px #333;
+}
+
+h2 {
+    font-size: 2.5em;
+    text-align: center;
+    text-shadow: 0 0 5px #FFF;
+}
+
+h3 {
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 2em;
 }
 
 table {
@@ -24,26 +34,34 @@ table {
 }
 
 th {
-    width: 200px;
+    width: 30%;
     color: #FFF;
     text-shadow: 0 0 5px #333;
     background-color: #61CDF5;
     border-bottom: 1px #333 solid;
-    padding: 1%;
+    padding: 1.4%;
     font-weight: 600;
 }
 
 td {
-    border-left: 1px #333 solid;
+    border: 1px #333 solid;
     padding: 1%;
+
 }
 
-tr:nth-child(even) td:nth-child(odd),
-tr:nth-child(odd) td:nth-child(even) {
-    background-color: #FFF;
+tr:nth-child(even) {background-color: #FFF;}
+
+select {
+    display: block;
+    margin: 0 auto;
+    font-size: 150%;
+}
+/***Hides shop info tables --- default setting***/
+.hide {
+    display: none;
 }
 
-.name {
-    text-align: left;
-    font-weight: 600;
+/***Shows shop info tables***/
+.show {
+    display: block;
 }
